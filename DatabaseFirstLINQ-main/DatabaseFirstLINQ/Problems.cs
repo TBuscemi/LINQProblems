@@ -15,12 +15,12 @@ namespace DatabaseFirstLINQ
         }
         public void RunLINQQueries()
         {
-            //ProblemOne();
-            //ProblemTwo();
-            //ProblemThree();
+            ProblemOne();
+            ProblemTwo();
+            ProblemThree();
             ProblemFour();
-            //ProblemFive();
-            //ProblemSix();
+            ProblemFive();
+            ProblemSix();
             //ProblemSeven();
             //ProblemEight();
             //ProblemNine();
@@ -44,6 +44,7 @@ namespace DatabaseFirstLINQ
             // HINT: .ToList().Count
             int users = _context.Users.ToList().Count;
             Console.WriteLine(users);
+            Console.WriteLine('\n');
         }
 
         private void ProblemTwo()
@@ -56,6 +57,7 @@ namespace DatabaseFirstLINQ
                 Console.WriteLine(user.Email);
             }
 
+            Console.WriteLine('\n');
         }
 
         private void ProblemThree()
@@ -69,6 +71,9 @@ namespace DatabaseFirstLINQ
             {
                 Console.WriteLine(product.Name + "  $" + product.Price);
             }
+
+            Console.WriteLine('\n');
+
             //foreach (decimal price in prices)
             //{
             //    Console.WriteLine(" $" + price);
@@ -80,25 +85,40 @@ namespace DatabaseFirstLINQ
             // Write a LINQ query that gets each product that contains an "s" in the products name.
             // Then print the name of each product from the above query to the console.
             var products = _context.Products.Where(p => p.Name.Contains("s"));
+            
             foreach (Product product in products)
             {
                 Console.WriteLine(product.Name);
             }
-        
+            Console.WriteLine("\n");
         }
 
         private void ProblemFive()
         {
             // Write a LINQ query that gets all of the users who registered BEFORE 2016
             // Then print each user's email and registration date to the console.
+            var users = _context.Users.Where(e => e.RegistrationDate.Value.Year < 2016);
 
+            foreach (User user in users)
+            {
+                Console.WriteLine(user.Email + " " + user.RegistrationDate.Value.Date);
+
+            }
+
+            Console.WriteLine('\n');
         }
 
         private void ProblemSix()
         {
             // Write a LINQ query that gets all of the users who registered AFTER 2016 and BEFORE 2018
             // Then print each user's email and registration date to the console.
+            var users = _context.Users.Where(e => e.RegistrationDate.Value.Year < 2018 && e.RegistrationDate.Value.Year > 2016);
 
+            foreach (User user in users)
+            {
+                Console.WriteLine(user.Email + " " + user.RegistrationDate);
+
+            }
         }
 
         // <><><><><><><><> R Actions (Read) with Foreign Keys <><><><><><><><><>
