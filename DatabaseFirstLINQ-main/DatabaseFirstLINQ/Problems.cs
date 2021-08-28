@@ -21,10 +21,10 @@ namespace DatabaseFirstLINQ
             ProblemFour();
             ProblemFive();
             ProblemSix();
-            //ProblemSeven();
-            //ProblemEight();
+            ProblemSeven();
+            ProblemEight();
             //ProblemNine();
-            //ProblemTen();
+            ProblemTen();
             //ProblemEleven();
             //ProblemTwelve();
             //ProblemThirteen();
@@ -119,6 +119,7 @@ namespace DatabaseFirstLINQ
                 Console.WriteLine(user.Email + " " + user.RegistrationDate);
 
             }
+            Console.WriteLine("\n");
         }
 
         // <><><><><><><><> R Actions (Read) with Foreign Keys <><><><><><><><><>
@@ -132,13 +133,20 @@ namespace DatabaseFirstLINQ
             {
                 Console.WriteLine($"Email: {userRole.User.Email} Role: {userRole.Role.RoleName}");
             }
+            Console.WriteLine("\n");
         }
 
         private void ProblemEight()
         {
             // Write a LINQ query that retreives all of the products in the shopping cart of the user who has the email "afton@gmail.com".
             // Then print the product's name, price, and quantity to the console.
-
+            var products = _context.ShoppingCarts.Include(e => e.Product).Include(e => e.User).Where(e => e.User.Email == "afton@gmail.com");
+            
+            foreach (ShoppingCart items in products)
+            {
+                Console.WriteLine($"Product Name: {items.Product.Name} Price: {items.Product.Price} Quantity: {items.Quantity}");
+            }
+            Console.WriteLine("\n");
         }
 
         private void ProblemNine()
@@ -153,7 +161,12 @@ namespace DatabaseFirstLINQ
         {
             // Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee".
             // Then print the user's email as well as the product's name, price, and quantity to the console.
-
+            var employees = _context.UserRoles.Include(e => e.Role).Include(e => e.User).Where(e => e.RoleId == 2);
+            //var products = _context.ShoppingCarts.Include(e => e.Product).Include(e => e.User).Where(e => e.UserId == 2);
+            foreach (UserRole items in employees)
+            {
+                Console.WriteLine($"User Email: {items.User.Email}  Product Name: {items.User.ShoppingCart.Name}");
+            }
         }
 
         // <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>

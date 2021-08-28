@@ -9,7 +9,7 @@ namespace DatabaseFirstLINQ.Models
     {
         public User()
         {
-            ShoppingCarts = new HashSet<ShoppingCart>();
+            ShoppingCart = new HashSet<ShoppingCart>();
             UserRoles = new HashSet<UserRole>();
         }
 
@@ -18,7 +18,7 @@ namespace DatabaseFirstLINQ.Models
         public string Password { get; set; }
         public DateTime? RegistrationDate { get; set; }
 
-        public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
+        public virtual ICollection<ShoppingCart> ShoppingCart { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }
