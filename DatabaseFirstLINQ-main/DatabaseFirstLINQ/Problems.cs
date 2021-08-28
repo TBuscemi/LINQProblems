@@ -24,11 +24,11 @@ namespace DatabaseFirstLINQ
             ProblemSeven();
             ProblemEight();
             //ProblemNine();
-            ProblemTen();
+            //ProblemTen();
             //ProblemEleven();
             //ProblemTwelve();
             //ProblemThirteen();
-            //ProblemFourteen();
+            //oblemFourteen();
             //ProblemFifteen();
             //ProblemSixteen();
             //ProblemSeventeen();
@@ -165,7 +165,7 @@ namespace DatabaseFirstLINQ
             //var products = _context.ShoppingCarts.Include(e => e.Product).Include(e => e.User).Where(e => e.UserId == 2);
             foreach (UserRole items in employees)
             {
-                Console.WriteLine($"User Email: {items.User.Email}  Product Name: {items.User.ShoppingCart.Name}");
+                //Console.WriteLine($"User Email: {items.User.Email}  Product Name: {items.User.Name}");
             }
         }
 
@@ -188,7 +188,14 @@ namespace DatabaseFirstLINQ
         private void ProblemTwelve()
         {
             // Create a new Product object and add that product to the Products table using LINQ.
-
+            Product newProduct = new Product()
+            {
+                Name = "Windows XP Vista",
+                Description = "Probably the best thing you'll ever buy.",
+                Price = 1000
+            };
+            _context.Products.Add(newProduct);
+            _context.SaveChanges();
         }
 
         private void ProblemThirteen()
@@ -208,7 +215,14 @@ namespace DatabaseFirstLINQ
         private void ProblemFourteen()
         {
             // Add the product you create to the user we created in the ShoppingCart junction table using LINQ.
-
+            ShoppingCart newCart = new ShoppingCart()
+            {
+                UserId = 6,
+                ProductId = 8,
+                Quantity = 1
+            };
+            _context.ShoppingCarts.Add(newCart);
+            _context.SaveChanges();
         }
 
         // <><> U Actions (Update) <><>
