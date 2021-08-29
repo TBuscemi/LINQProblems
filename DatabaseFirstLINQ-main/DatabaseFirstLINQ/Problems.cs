@@ -15,24 +15,24 @@ namespace DatabaseFirstLINQ
         }
         public void RunLINQQueries()
         {
-            ProblemOne();
-            ProblemTwo();
-            ProblemThree();
-            ProblemFour();
-            ProblemFive();
-            ProblemSix();
-            ProblemSeven();
-            ProblemEight();
-            ProblemNine();
-            ProblemTen();
-            ProblemEleven();
-            ProblemTwelve();
-            ProblemThirteen();
-            ProblemFourteen();
-            ProblemFifteen();
-            ProblemSixteen();
-            ProblemSeventeen();
-            //ProblemEighteen();
+            //ProblemOne();
+            //ProblemTwo();
+            //ProblemThree();
+            //ProblemFour();
+            //ProblemFive();
+            //ProblemSix();
+            //ProblemSeven();
+            //ProblemEight();
+            //ProblemNine();
+            //ProblemTen();
+            //ProblemEleven();
+            //ProblemTwelve();
+            //ProblemThirteen();
+            //ProblemFourteen();
+            //ProblemFifteen();
+            //ProblemSixteen();
+            //ProblemSeventeen();
+            ProblemEighteen();
             //ProblemNineteen();
             //ProblemTwenty();
         }
@@ -60,7 +60,7 @@ namespace DatabaseFirstLINQ
             Console.WriteLine('\n');
         }
 
-        private void ProblemThree()
+        private void ProblemThree() 
         {
             // Write a LINQ query that gets each product where the products price is greater than $150.
             // Then print the name and price of each product from the above query to the console.
@@ -215,6 +215,7 @@ namespace DatabaseFirstLINQ
             _context.UserRoles.Add(newUserRole);
             _context.SaveChanges();
         }
+    
 
         private void ProblemFourteen()
         {
@@ -252,7 +253,7 @@ namespace DatabaseFirstLINQ
             //_context.Products.Add(newProduct);
             //_context.SaveChanges();
             var product = _context.Products.Where(p => p.Name == "Windows XP Vista").SingleOrDefault();
-            product.Price = 500;
+            product.Price = 700;
             _context.Products.Update(product);
             _context.SaveChanges();
             Console.WriteLine(product.Price);
@@ -263,12 +264,12 @@ namespace DatabaseFirstLINQ
             // Change the role of the user we created to "Employee"
             // HINT: You need to delete the existing role relationship and then create a new UserRole object and add it to the UserRoles table
             // See problem eighteen as an example of removing a role relationship
-            var userRole = _context.UserRoles.Where(ur => ur.User.Email == "mike@gmail.com").SingleOrDefault();
+            var userRole = _context.UserRoles.Where(ur => ur.User.Email == "mike@gmail.com").FirstOrDefault();
             _context.UserRoles.Remove(userRole);
             UserRole newUserRole = new UserRole()
             {
-                UserId = _context.Users.Where(u => u.Email == "mike@gmail.com").Select(u => u.Id).SingleOrDefault(),
-                RoleId = _context.Roles.Where(r => r.RoleName == "Employee").Select(r => r.Id).SingleOrDefault()
+                UserId = _context.Users.Where(u => u.Email == "mike@gmail.com").Select(u => u.Id).FirstOrDefault(),
+                RoleId = _context.Roles.Where(r => r.RoleName == "Employee").Select(r => r.Id).FirstOrDefault()
             };
             _context.UserRoles.Add(newUserRole);
             _context.SaveChanges();
